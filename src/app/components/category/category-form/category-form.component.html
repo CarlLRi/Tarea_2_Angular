@@ -1,0 +1,27 @@
+<form [formGroup]="categoryForm" class="row">
+  <div>
+    <h2 class="mb-0">Add/Edit Category</h2>
+  </div>
+
+  <div class="mb-2">
+    <label class="mb-1" for="name">Name*</label>
+    <input id="name" formControlName="name" type="text" class="form-control">
+    @if (categoryForm.controls['name'].invalid && (categoryForm.controls['name'].dirty || categoryForm.controls['name'].touched)) {
+      <p class="text-danger my-1">Name is required</p>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label class="mb-1" for="description">Description*</label>
+    <textarea id="description" formControlName="description" class="form-control"></textarea>
+    @if (categoryForm.controls['description'].invalid && (categoryForm.controls['description'].dirty || categoryForm.controls['description'].touched)) {
+      <p class="text-danger my-1">Description is required</p>
+    }
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <button (click)="callSaveOrUpdate()" [disabled]="categoryForm.invalid" class="btn btn-primary" type="button">
+      {{ categoryForm.controls['id'].value ? 'Update' : 'Save' }}
+    </button>
+  </div>
+</form>
