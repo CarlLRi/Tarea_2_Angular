@@ -10,9 +10,10 @@
     </div>
     <div class="col-12">
       <app-product-list
+        [products]="productService.products$()"
         (callModalAction)="callEdition($event)"
         (callDeleteAction)="productService.delete($event)"
-        [products]="productService.products$()"
+        
       />
       @if(productService.products$().length) {
         <app-pagination

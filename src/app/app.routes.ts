@@ -1,3 +1,4 @@
+// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { AppLayoutComponent } from './components/app-layout/app-layout.component';
@@ -12,6 +13,9 @@ import { IRoleType } from './interfaces';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { GamesComponent } from './pages/games/games.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+
 
 export const routes: Routes = [
   {
@@ -47,9 +51,9 @@ export const routes: Routes = [
         path: 'users',
         component: UsersComponent,
         canActivate:[AdminRoleGuard],
-        data: { 
+        data: {
           authorities: [
-            IRoleType.admin, 
+            IRoleType.admin,
             IRoleType.superAdmin
           ],
           name: 'Users',
@@ -59,11 +63,11 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        data: { 
+        data: {
           authorities: [
-            IRoleType.admin, 
-            IRoleType.superAdmin,
-            IRoleType.user
+            //IRoleType.admin,
+            //IRoleType.superAdmin
+            // IRoleType.user
           ],
           name: 'Dashboard',
           showInSidebar: true
@@ -72,9 +76,9 @@ export const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
-        data: { 
+        data: {
           authorities: [
-            IRoleType.admin, 
+            IRoleType.admin,
             IRoleType.superAdmin,
             IRoleType.user
           ],
@@ -85,11 +89,11 @@ export const routes: Routes = [
       {
         path: 'games',
         component: GamesComponent,
-        data: { 
+        data: {
           authorities: [
-            IRoleType.admin, 
-            IRoleType.superAdmin,
-            IRoleType.user,
+            //IRoleType.admin,
+            //IRoleType.superAdmin
+            // IRoleType.user 
           ],
           name: 'games',
           showInSidebar: true
@@ -98,16 +102,44 @@ export const routes: Routes = [
       {
         path: 'orders',
         component: OrdersComponent,
-        data: { 
+        data: {
           authorities: [
-            IRoleType.admin, 
-            IRoleType.superAdmin,
-            IRoleType.user,
+            //IRoleType.admin,
+            //IRoleType.superAdmin
+            //IRoleType.user <-- ELIMINA ESTO
           ],
           name: 'orders',
           showInSidebar: true
         }
-      }
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+        canActivate:[AdminRoleGuard],
+        data: {
+          authorities: [
+            IRoleType.admin,
+            IRoleType.superAdmin,
+            IRoleType.user
+          ],
+          name: 'Products',
+          showInSidebar: true
+        }
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        canActivate:[AdminRoleGuard],
+        data: {
+          authorities: [
+            IRoleType.admin,
+            IRoleType.superAdmin,
+            IRoleType.user
+          ],
+          name: 'Categories',
+          showInSidebar: true
+        }
+      },
     ],
   },
 ];

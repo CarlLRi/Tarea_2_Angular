@@ -50,10 +50,9 @@ export class CategoriesComponent {
 
 
   callEdition(category: ICategory) {
-    this.categoryForm.controls['id'].setValue(category.id);
+    this.categoryForm.controls['id'].setValue(null);
     this.categoryForm.controls['name'].setValue(category.name);
     this.categoryForm.controls['description'].setValue(category.description);
-    
     this.modalService.displayModal('md', this.addCategoryModal);
   }
 
